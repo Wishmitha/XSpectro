@@ -7,39 +7,38 @@ FFT fft;
 
 int w;
 
-PImage fade;
-
-
 void setup(){
-    size(640,480);
-    minim = new Minim(this);
-    in = minim.getLineIn(Minim.STEREO,512);
-    fft = new FFT(in.bufferSize(),in.sampleRate());
-    fft.logAverages(60,7);
+    size(640,480); // draw screen
+    smooth();
+    frameRate(999999999);
     
-    stroke(255);
+    minim = new Minim(this); // new minim object
+    
+    
+    in = minim.getLineIn(Minim.STEREO,2048); // audio input from microphone (have to change this to get currently playing audio)
+    
+    fft = new FFT(in.bufferSize(),in.sampleRate()); // new fft object
+    
+    fft.logAverages(60,7); // getting log averages to draw within frame ???
+    
+    stroke(255); 
     w=width/fft.avgSize();
-    strokeWeight(w);
-    strokeCap(SQUARE);
+    strokeWeight(w); // display lines as bars
     
     background(0);
-    fade = get(0,0,width,height); // get the frame
+
 }
 
 void draw(){
   
   background(0);
+  smooth();
   
-  tint(255,255,255,252);
-  image(fade,0,0);
-  noTint();
-  
-  fft.forward(in.mix);
+  fft.forward(in.mix); //generate fourier series
   
   for(int i=0; i<fft.avgSize();i++){
-    line((i*w)+(w/2),height, (i*w)+(w/2), height - fft.getAvg(i)*4);
+    line((i*w)+(w/2),height, (i*w)+(w/2), height - fft.getAvg(i)); // by multiplying fft.getAvg(i) by n maximum height of the bars can be increased
   }
 
-  fade = get(0,0,width,height);
   
 }
