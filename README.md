@@ -8,3 +8,9 @@ In a **Ubuntu** system, default audio input can be changed to audio monitor usin
 In a **Windows** system, default audio input can be changed to audio monitor by going through system settings (or Control Panel in older versions)
 
 Looking foward to include switching between microphone and audio monitor to application itself :)
+
+**Keyboard Controls :**
+
+Use up, down arrows to adjust height of the spectrum bars. ( If the audio strength is low and movement of the spectrum is low, increasing the height will output a better spectrum with higher movemnt)
+
+Pressing Spacebar switches the height to default value.
