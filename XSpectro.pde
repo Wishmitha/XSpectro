@@ -64,7 +64,7 @@ void draw(){
 
 void regulateHeight(){ // height regulation function
   
-  text("Height Factor :"+(heightFactor/1000),width-175,20); // displays height factor
+  text("Height Factor : "+(heightFactor/1000),width-175,20); // displays height factor
   
   if(keyPressed == true){
     
