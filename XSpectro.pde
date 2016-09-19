@@ -7,16 +7,23 @@ FFT fft;
 
 int w; // the width of the band
 
-color col1 = color(100,255,100); // from this colour
-color col2 = color(250,100,100); // to this colour
+color col1; // from this colour
+color col2; // to this colour
 color interCol; // intermediate colour
 
-float heightFactor = 500; // initial height factor
+float heightFactor; // initial height factor
+
+int count;
 
 void setup(){
     size(640,480); // draw screen
     smooth();
     frameRate(60);
+    
+    col1 = color(100,255,100); // from this colour
+    col2 = color(250,100,100); // to this colour
+    
+    heightFactor = 500; // initial height factor
     
     minim = new Minim(this); // new minim object
     
@@ -41,6 +48,8 @@ void draw(){
   stroke(col1); // colour of band set to col1
   
   regulateHeight(); // height regulation function
+  
+  resync(); // if visualization is not synced with audio resync it
   
   
   fft.forward(in.mix); //generate fourier series
@@ -80,6 +89,18 @@ void regulateHeight(){ // height regulation function
     }else if(key == ' '){ // reset to default settings if space is pressed ( height factor / 1000 = 0.5 )
       heightFactor = 500;
       text("Switched to Default Settings",width-175,40);
+    }
+  }
+}
+
+void resync(){
+  if(count<25){ // issue in resetting when count goes over 29 error occurs
+    if(keyPressed == true ){
+      if(key == 'r'){
+        println(count);
+        count++;
+        setup(); // reset to the initial state b calling setup()
+      }
     }
   }
 }
