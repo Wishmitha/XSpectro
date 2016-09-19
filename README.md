@@ -14,3 +14,11 @@ Looking foward to include switching between microphone and audio monitor to appl
 Use up, down arrows to adjust height of the spectrum bars. ( If the audio strength is low and movement of the spectrum is low, increasing the height will output a better spectrum with higher movemnt)
 
 Pressing Spacebar switches the height to default value.
+
+Press 'R' to resync if there is a syncinc delay between audio and the visualization
+
+**Issues :**
+
+1. Application has no control over default audio input ( User can change it from computer settings)
+2. Syncing between audio and visualization can be decrased ( There could be a delay )
+3. Resync only can be done few times during running time ( An audio input erroe occurs when resyncing is done continuously)
